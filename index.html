@@ -103,7 +103,7 @@
             max-width: 100%;
             height: auto;
             margin-bottom: 10px;
-            display: block; /* Make image a block element */
+            display: block;
         }
 
         @media (max-width: 768px) {
@@ -120,7 +120,7 @@
     <div class="container">
         <h2>แบบทดสอบวิชางานไฟฟ้าและอิเล็กทรอนิกส์เบื้องต้น</h2>
 
-        <form id="quizForm" action="http://jirapong.lnw.mn/final-test-2/process-ans.php" method="POST" onsubmit="return validateForm()">
+        <form id="quizForm" action="process-ans.php" method="POST" onsubmit="return validateForm()">
             <div class="form-container">
                 <label for="name">ชื่อ-นามสกุล:</label>
                 <input type="text" id="name" name="name" required><br><br>
@@ -159,10 +159,10 @@
                     let imageFilename = '';
 
                     // Check for image filename in parentheses
-                    const imageMatch = questionText.match(/\(img\s(.*?)\)/);
+                    const imageMatch = questionText.match(/\(img\s(.*?)\)/); // เปลี่ยนตรงนี้
                     if (imageMatch) {
                         imageFilename = imageMatch[1].trim();
-                        questionText = questionText.replace(/\(img\s(.*?)\)/, '').trim();
+                        questionText = questionText.replace(/\(img\s(.*?)\)/, '').trim(); // เปลี่ยนตรงนี้
                     }
 
                     const options = lines.slice(1);
@@ -175,7 +175,7 @@
                     }
                     if (imageFilename) {
                         const img = new Image();
-                        img.src = imageFilename;
+                        img.src = imageFilename;  //  Path ถูกต้องแล้ว
                         img.alt = "Question Image";
                         img.className = "question-image";
                         questionHTML.appendChild(img);
