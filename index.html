@@ -159,10 +159,10 @@
                     let imageFilename = '';
 
                     // Check for image filename in parentheses
-                    const imageMatch = questionText.match(/\(ภาพ\s(.*?)\)/);
+                    const imageMatch = questionText.match(/\(img\s(.*?)\)/);
                     if (imageMatch) {
                         imageFilename = imageMatch[1].trim();
-                        questionText = questionText.replace(/\(ภาพ\s(.*?)\)/, '').trim();
+                        questionText = questionText.replace(/\(img\s(.*?)\)/, '').trim();
                     }
 
                     const options = lines.slice(1);
