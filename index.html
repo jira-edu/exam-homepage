@@ -159,10 +159,10 @@
                     let imageFilename = '';
 
                     // Check for image filename in parentheses
-                    const imageMatch = questionText.match(/\(img\s(.*?)\)/); // เปลี่ยนตรงนี้
+                    const imageMatch = questionText.match(/\(img\s(.*?)\)/);
                     if (imageMatch) {
                         imageFilename = imageMatch[1].trim();
-                        questionText = questionText.replace(/\(img\s(.*?)\)/, '').trim(); // เปลี่ยนตรงนี้
+                        questionText = questionText.replace(/\(img\s(.*?)\)/, '').trim();
                     }
 
                     const options = lines.slice(1);
@@ -175,17 +175,23 @@
                     }
                     if (imageFilename) {
                         const img = new Image();
-                        img.src = imageFilename;  //  Path ถูกต้องแล้ว
+                        img.src =  imageFilename;
                         img.alt = "Question Image";
                         img.className = "question-image";
                         questionHTML.appendChild(img);
                     }
 
-                    questionHTML.innerHTML += options.map(option => {
-                        const value = option.charAt(0);
-                        return `<label><input type="radio" name="q${index + 1}" value="${value}"> ${option}</label><br>`;
-                    }).join('');
-
+                    options.forEach(option =>{
+                        const radioLabel = document.createElement('label');
+                        const radioInput = document.createElement('input');
+                        radioInput.type = "radio";
+                        radioInput.name = `q${index + 1}`;
+                        radioInput.value = option.charAt(0);
+                        radioLabel.appendChild(radioInput);
+                        radioLabel.appendChild(document.createTextNode(option));
+                        questionHTML.appendChild(radioLabel);
+                        questionHTML.appendChild(document.createElement('br'));
+                    })
                     questionContainer.appendChild(questionHTML);
                 });
             } catch (error) {
