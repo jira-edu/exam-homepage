@@ -165,23 +165,25 @@
                         questionText = questionText.replace(/\(img\s(.*?)\)/, '').trim();
                     }
 
-                    const options = lines.slice(1);
-
                     const questionHTML = document.createElement('div');
                     questionHTML.className = 'question';
-                    // Ensure questionText is not empty before adding the paragraph
+
                     if (questionText) {
-                        questionHTML.innerHTML = `<p>${questionText}</p>`;
+                        const questionParagraph = document.createElement('p');
+                        questionParagraph.textContent = questionText;
+                        questionHTML.appendChild(questionParagraph);
                     }
+
                     if (imageFilename) {
                         const img = new Image();
-                        img.src =  imageFilename;
+                        img.src = imageFilename;
                         img.alt = "Question Image";
                         img.className = "question-image";
                         questionHTML.appendChild(img);
                     }
 
-                    options.forEach(option =>{
+                    const optionsHTML = document.createElement('div');
+                    lines.slice(1).forEach(option => {
                         const radioLabel = document.createElement('label');
                         const radioInput = document.createElement('input');
                         radioInput.type = "radio";
@@ -189,9 +191,10 @@
                         radioInput.value = option.charAt(0);
                         radioLabel.appendChild(radioInput);
                         radioLabel.appendChild(document.createTextNode(option));
-                        questionHTML.appendChild(radioLabel);
-                        questionHTML.appendChild(document.createElement('br'));
-                    })
+                        optionsHTML.appendChild(radioLabel);
+                        optionsHTML.appendChild(document.createElement('br'));
+                    });
+                    questionHTML.appendChild(optionsHTML);
                     questionContainer.appendChild(questionHTML);
                 });
             } catch (error) {
