@@ -13,72 +13,106 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* ให้ body มีความสูงอย่างน้อยเท่ากับหน้าจอ */
+            min-height: 100vh;
+            background-color: #f4f4f4;
         }
         .container {
             width: 80%;
             margin: 20px auto;
-            flex: 1; /* ให้เนื้อหาหลักสามารถขยายพื้นที่ */
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         h2 {
-            text-align: center; /* กำหนดให้หัวข้ออยู่กึ่งกลาง */
+            text-align: center;
             font-size: 24px;
-            margin-top: 40px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            color: #333;
         }
         .question {
             margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
         }
         .question p {
             font-size: 18px;
+            margin-bottom: 10px;
+            color: #555;
         }
         .question input[type="radio"] {
             margin-right: 10px;
+            cursor: pointer;
+        }
+        .question label {
+            margin-right: 15px;
+            color: #666;
+            cursor: pointer;
         }
         .form-container {
-            background-color: #f9f9f9;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
+            background-color: transparent;
         }
         input[type="text"] {
-            padding: 8px;
-            width: 100%;
+            padding: 10px;
+            width: calc(100% - 20px);
             margin: 10px 0;
             border-radius: 5px;
             border: 1px solid #ddd;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
         }
         button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #0056b3;
         }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
         }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
-
         .footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px 0;
+            padding: 15px 0;
             width: 100%;
+            margin-top: 20px;
+            border-top: 1px solid #444;
+        }
+        .question-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            display: block; /* Make image a block element */
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            input[type="text"] {
+                width: calc(100% - 20px);
+            }
         }
     </style>
 </head>
@@ -86,7 +120,7 @@
     <div class="container">
         <h2>แบบทดสอบวิชางานไฟฟ้าและอิเล็กทรอนิกส์เบื้องต้น</h2>
 
-        <form id="quizForm" action="http://jirapong.lnw.mn/final-test/process-ans.php" method="POST" onsubmit="return validateForm()">
+        <form id="quizForm" action="http://jirapong.lnw.mn/final-test-2/process-ans.php" method="POST" onsubmit="return validateForm()">
             <div class="form-container">
                 <label for="name">ชื่อ-นามสกุล:</label>
                 <input type="text" id="name" name="name" required><br><br>
@@ -94,259 +128,7 @@
                 <label for="school">โรงเรียน:</label>
                 <input type="text" id="school" name="school" required><br><br>
 
-                <!-- คำถามที่ 1 -->
-                <div class="question">
-                    <p>1. ข้อใดคือความหมายของไฟฟ้าช็อต</p>
-                    <input type="radio" name="q1" value="ก"> ก. กระแสไฟฟ้าไหลผ่านร่างกาย<br>
-                    <input type="radio" name="q1" value="ข"> ข. กระแสไฟฟ้าไหลในสายไฟ<br>
-                    <input type="radio" name="q1" value="ค"> ค. สายไฟได้รับกระแสเกินพิกัด<br>
-                    <input type="radio" name="q1" value="ง"> ง. เกิดการลัดวงจร<br>
-                </div>
-                
-                <div class="question">
-                    <p>2. ข้อใดคือความหมายของไฟฟ้าดูด</p>
-                    <input type="radio" name="q2" value="ก"> ก. กระแสไฟฟ้าไหลผ่านร่างกาย<br>
-                    <input type="radio" name="q2" value="ข"> ข. กระแสไฟฟ้าไหลในสายไฟ<br>
-                    <input type="radio" name="q2" value="ค"> ค. สายไฟได้รับกระแสเกินพิกัด<br>
-                    <input type="radio" name="q2" value="ง"> ง. เกิดการลัดวงจร<br>
-                </div>
-                
-                <div class="question">
-                    <p>3. ข้อใดปฐมพยาบาลผู้ถูกกระแสไฟฟ้าดูดไม่ถูกต้อง</p>
-                    <input type="radio" name="q3" value="ก"> ก. วางผู้ป่วยให้นอนหงาย<br>
-                    <input type="radio" name="q3" value="ข"> ข. ประกบปากผู้ป่วยให้สนิท<br>
-                    <input type="radio" name="q3" value="ค"> ค. ใช้มือนวดไหล่ให้ผ่อนคลาย<br>
-                    <input type="radio" name="q3" value="ง"> ง. นวดหัวใจและเป่าปากสลับกัน<br>
-                </div>
-                
-                <div class="question">
-                    <p>4. เครื่องมือวัดทางไฟฟ้าที่รวมย่านวัดต่างๆ เช่นย่านวัดความต้านทาน วัดกระแส วัดแรงดัน เข้าไว้ในตัวเดียว มีชื่อเรียกว่าอะไร</p>
-                    <input type="radio" name="q4" value="ก"> ก. กัลวานอมิเตอร์<br>
-                    <input type="radio" name="q4" value="ข"> ข. มัลติมิเตอร์<br>
-                    <input type="radio" name="q4" value="ค"> ค. เทอร์โมมิเตอร์<br>
-                    <input type="radio" name="q4" value="ง"> ง. แอมป์มิเตอร์<br>
-                </div>
-                
-                <div class="question">
-                    <p>5. การเซ็ตศูนย์ หรือการแตะปลายสายมิเตอร์เข้าด้วยกันแล้วปรับให้เข็มมิเตอร์ชี้เลข 0 จำเป็นต้องทำเมื่อใช้ย่านวัดใด</p>
-                    <input type="radio" name="q5" value="ก"> ก. วัดค่าความต้านทาน<br>
-                    <input type="radio" name="q5" value="ข"> ข. วัดแรงดัน<br>
-                    <input type="radio" name="q5" value="ค"> ค. วัดกระแส<br>
-                    <input type="radio" name="q5" value="ง"> ง. วัดไฟฟ้ากระแสตรง<br>
-                </div>
-                
-                <div class="question">
-                    <p>6. จากภาพ หากตั้งย่านวัดไฟฟ้ากระแสตรง 250V จะอ่านค่าแรงดันได้เท่าใด</p>
-                    <img src="Picture7.png" alt="ภาพประกอบคำถาม" width="300"><br>
-                    <input type="radio" name="q6" value="ก"> ก. 8.8 V<br>
-                    <input type="radio" name="q6" value="ข"> ข. 44 V<br>
-                    <input type="radio" name="q6" value="ค"> ค. 220 V<br>
-                    <input type="radio" name="q6" value="ง"> ง. 880 V<br>
-                </div>
-                
-                <div class="question">
-                    <p>7. จากภาพ หากตั้งย่านวัดไฟฟ้ากระแสตรง 50V จะอ่านค่าแรงดันได้เท่าใด</p>
-                    <img src="Picture7.png" alt="ภาพประกอบคำถาม" width="300"><br>
-                    <input type="radio" name="q7" value="ก"> ก. 8.8 V<br>
-                    <input type="radio" name="q7" value="ข"> ข. 44 V<br>
-                    <input type="radio" name="q7" value="ค"> ค. 220 V<br>
-                    <input type="radio" name="q7" value="ง"> ง. 880 V<br>
-                </div>
-                
-                <div class="question">
-                    <p>8. จากภาพด้านล่าง ตั้งย่านวัดความต้านทาน X1 จะอ่านค่าความต้านทานได้เท่าใด</p>
-                    <img src="Picture8.png" alt="ภาพประกอบคำถาม" width="300"><br>
-                    <input type="radio" name="q8" value="ก"> ก. 23 Ω<br>
-                    <input type="radio" name="q8" value="ข"> ข. 26 Ω<br>
-                    <input type="radio" name="q8" value="ค"> ค. 32 Ω<br>
-                    <input type="radio" name="q8" value="ง"> ง. 34 Ω<br>
-                </div>
-                
-                <div class="question">
-                    <p>9. ข้อใดไม่ใช่คุณสมบัติของไฟฟ้ากระแสสลับ</p>
-                    <input type="radio" name="q9" value="ก"> ก. สามารถส่งไฟฟ้าไปตามสายไฟได้ไกล<br>
-                    <input type="radio" name="q9" value="ข"> ข. สามารถสลับขั้วใช้งานได้<br>
-                    <input type="radio" name="q9" value="ค"> ค. มีชื่อขั้วใช้งานว่า L และ N<br>
-                    <input type="radio" name="q9" value="ง"> ง. สามารถประจุเก็บไว้ในแบตเตอรี่ได้<br>
-                </div>
-                
-                <div class="question">
-                    <p>10. ข้อใดเป็นพลังงานไฟฟ้าที่เกิดจากแม่เหล็กไฟฟ้า</p>
-                    <input type="radio" name="q10" value="ก"> ก. โซล่าเซลล์<br>
-                    <input type="radio" name="q10" value="ข"> ข. ไฟฟ้าพลังงานน้ำจากเขื่อน<br>
-                    <input type="radio" name="q10" value="ค"> ค. แบตเตอรี่<br>
-                    <input type="radio" name="q10" value="ง"> ง. ไฟฟ้าสถิต<br>
-                </div>
-
-                <div class="question">
-                    <p>11. ไฟฟ้าชนิดใดสามารถประจุเก็บไว้ในแบตเตอรี่ได้</p>
-                    <input type="radio" name="q11" value="ก"> ก. ไฟฟ้าสถิต<br>
-                    <input type="radio" name="q11" value="ข"> ข. ไฟฟ้ากระแสสลับ<br>
-                    <input type="radio" name="q11" value="ค"> ค. ไฟฟ้ากระแสตรง<br>
-                    <input type="radio" name="q11" value="ง"> ง. ไฟฟ้าสนามแม่เหล็ก<br>
-                </div>
-                
-                <div class="question">
-                    <p>12. ข้อใดเป็นคุณสมบัติของไฟฟ้าสถิต</p>
-                    <input type="radio" name="q12" value="ก"> ก. เกิดจากความร้อนภายในวัสดุ<br>
-                    <input type="radio" name="q12" value="ข"> ข. เกิดจากแสงในธรรมชาติ<br>
-                    <input type="radio" name="q12" value="ค"> ค. เกิดจากสนามแม่เหล็ก<br>
-                    <input type="radio" name="q12" value="ง"> ง. เกิดจากการเสียดสี<br>
-                </div>
-                
-                <div class="question">
-                    <p>13. ในสามเหลี่ยมกฎของโอห์มประกอบไปด้วยอะไรบ้าง</p>
-                    <input type="radio" name="q13" value="ก"> ก. P, E, I<br>
-                    <input type="radio" name="q13" value="ข"> ข. J, E, K<br>
-                    <input type="radio" name="q13" value="ค"> ค. A, V, R<br>
-                    <input type="radio" name="q13" value="ง"> ง. E, I, R<br>
-                </div>
-                
-                <div class="question">
-                    <p>14. จากภาพเป็นการต่อวงจรแบบใด</p>
-                    <img src="Picture1.jpg" alt="ภาพประกอบคำถาม" width="300"><br>
-                    <input type="radio" name="q14" value="ก"> ก. แบบอนุกรม<br>
-                    <input type="radio" name="q14" value="ข"> ข. แบบขนาน<br>
-                    <input type="radio" name="q14" value="ค"> ค. แบบผสม<br>
-                    <input type="radio" name="q14" value="ง"> ง. แบบวงจรรวม<br>
-                </div>
-                
-                <div class="question">
-                    <p>15. จากภาพเป็นการต่อวงจรแบบใด</p>
-                    <img src="Picture2.gif" alt="ภาพประกอบคำถาม" width="300"><br>
-                    <input type="radio" name="q15" value="ก"> ก. แบบอนุกรม<br>
-                    <input type="radio" name="q15" value="ข"> ข. แบบขนาน<br>
-                    <input type="radio" name="q15" value="ค"> ค. แบบผสม<br>
-                    <input type="radio" name="q15" value="ง"> ง. แบบวงจรรวม<br>
-                </div>
-                
-                <div class="question">
-                    <p>16. ตัวต้านทาน 220 Ω ต่อแบบอนุกรมกัน จะได้ค่าความต้านทานรวมเท่าใด</p>
-                    <input type="radio" name="q16" value="ก"> ก. 110 Ω<br>
-                    <input type="radio" name="q16" value="ข"> ข. 220 Ω<br>
-                    <input type="radio" name="q16" value="ค"> ค. 440 Ω<br>
-                    <input type="radio" name="q16" value="ง"> ง. 48,400 Ω<br>
-                </div>
-                
-                <div class="question">
-                    <p>17. ข้อใดเป็นคุณสมบัติของวงจรขนาน</p>
-                    <input type="radio" name="q17" value="ก"> ก. กระแสไหลเท่ากันทั้งวงจร<br>
-                    <input type="radio" name="q17" value="ข"> ข. ค่าความต้านทานรวมหาได้โดยการนำค่าความต้านทานมาบวกกันทั้งหมด<br>
-                    <input type="radio" name="q17" value="ค"> ค. แรงดันตกคร่อมไม่เท่ากันทั้งวงจร<br>
-                    <input type="radio" name="q17" value="ง"> ง. แรงดันเท่ากันทั้งวงจร<br>
-                </div>
-                
-                <div class="question">
-                    <p>18. ข้อใดเป็นหน่วยของกระแส</p>
-                    <input type="radio" name="q18" value="ก"> ก. โวลต์<br>
-                    <input type="radio" name="q18" value="ข"> ข. แอมแปร์<br>
-                    <input type="radio" name="q18" value="ค"> ค. โอห์ม<br>
-                    <input type="radio" name="q18" value="ง"> ง. วัตต์<br>
-                </div>
-                
-                <div class="question">
-                    <p>19. ตัวต้านทานแถบสี เหลือง ม่วง ส้ม ทอง อ่านค่าความต้านทานได้เท่าใด</p>
-                    <input type="radio" name="q19" value="ก"> ก. 47 Ω<br>
-                    <input type="radio" name="q19" value="ข"> ข. 470 Ω<br>
-                    <input type="radio" name="q19" value="ค"> ค. 4.7 kΩ<br>
-                    <input type="radio" name="q19" value="ง"> ง. 47 kΩ<br>
-                </div>
-                
-                <div class="question">
-                    <p>20. ตัวต้านทานแถบสี ส้ม ส้ม เหลือง ทอง อ่านค่าความต้านทานได้เท่าใด</p>
-                    <input type="radio" name="q20" value="ก"> ก. 220 kΩ<br>
-                    <input type="radio" name="q20" value="ข"> ข. 330 kΩ<br>
-                    <input type="radio" name="q20" value="ค"> ค. 22 MΩ<br>
-                    <input type="radio" name="q20" value="ง"> ง. 33 MΩ<br>
-                </div>
-
-                <div class="question">
-                    <p>21. ตัวต้านทานแถบสี น้ำตาล ดำ ดำ ทอง อ่านค่าความต้านทานได้เท่าใด</p>
-                    <input type="radio" name="q21" value="ก"> ก. 0.1 Ω<br>
-                    <input type="radio" name="q21" value="ข"> ข. 1 Ω<br>
-                    <input type="radio" name="q21" value="ค"> ค. 10 Ω<br>
-                    <input type="radio" name="q21" value="ง"> ง. 100 Ω<br>
-                </div>
-                
-                <div class="question">
-                    <p>22. จากภาพเป็นตัวต้านทานแบบใด</p>
-                    <img src="Picture6.png" alt="ภาพประกอบคำถาม" width="300"><br>
-                    <input type="radio" name="q22" value="ก"> ก. ตัวต้านทานแบบค่าคงที่<br>
-                    <input type="radio" name="q22" value="ข"> ข. ตัวต้านทานแบบปรับค่าได้<br>
-                    <input type="radio" name="q22" value="ค"> ค. ตัวต้านทานแบบเลือกค่าได้<br>
-                    <input type="radio" name="q22" value="ง"> ง. ตัวต้านทานแบบบิดเลือกค่า<br>
-                </div>
-                
-                <div class="question">
-                    <p>23. ข้อใดเป็นหน้าที่ของตัวต้านทาน</p>
-                    <input type="radio" name="q23" value="ก"> ก. ต้านทานแรงดันให้คงที่ในวงจร<br>
-                    <input type="radio" name="q23" value="ข"> ข. ต้านทานกระแสไฟฟ้าในวงจร<br>
-                    <input type="radio" name="q23" value="ค"> ค. ต้านทานความร้อนในสายไฟ<br>
-                    <input type="radio" name="q23" value="ง"> ง. ต้านทานสนามแม่เหล็กในวงจร<br>
-                </div>
-                
-                <div class="question">
-                    <p>24. ข้อใดอธิบายโครงสร้างภายในตัวเก็บประจุได้ถูกต้อง</p>
-                    <input type="radio" name="q24" value="ก"> ก. แผ่นตัวนำ 2 แผ่น วางประกบกันโดยมีฉนวนคั่นกลางที่เรียกว่าไดอิเล็กทริก<br>
-                    <input type="radio" name="q24" value="ข"> ข. ผงคาร์บอนอัดรวมกับซิลิก้าประสานด้วยกาวอัดแน่น<br>
-                    <input type="radio" name="q24" value="ค"> ค. เซรามิกเคลือบด้วยโลหะออกไซด์บนผิว<br>
-                    <input type="radio" name="q24" value="ง"> ง. ลวดทองแดงอาบน้ำยาพันรอบบนแกนชนิดต่างๆ เช่นอากาศ โลหะ และอโลหะ<br>
-                </div>
-                
-                <div class="question">
-                    <p>25. จากภาพเป็นตัวเก็บประจุชนิดใด</p>
-                    <img src="Picture5.png" alt="ภาพประกอบคำถาม" width="300"><br>
-                    <input type="radio" name="q25" value="ก"> ก. ไมก้า<br>
-                    <input type="radio" name="q25" value="ข"> ข. เซรามิก<br>
-                    <input type="radio" name="q25" value="ค"> ค. พลาสติก<br>
-                    <input type="radio" name="q25" value="ง"> ง. อิเล็กโทรไลต์<br>
-                </div>
-                
-                <div class="question">
-                    <p>26. จากภาพเป็นตัวเก็บประจุชนิดใด</p>
-                    <img src="Picture4.jpg" alt="ภาพประกอบคำถาม" width="300"><br>
-                    <input type="radio" name="q26" value="ก"> ก. ไมก้า<br>
-                    <input type="radio" name="q26" value="ข"> ข. เซรามิก<br>
-                    <input type="radio" name="q26" value="ค"> ค. พลาสติก<br>
-                    <input type="radio" name="q26" value="ง"> ง. อิเล็กโทรไลต์<br>
-                </div>
-                
-                <div class="question">
-                    <p>27. การตรวจสอบตัวเก็บประจุด้วยมัลติมิเตอร์ เข็มมัลติมิเตอร์ต้องขึ้นในลักษณะใด</p>
-                    <input type="radio" name="q27" value="ก"> ก. ชี้ไปที่ค่าสุดสเกล<br>
-                    <input type="radio" name="q27" value="ข"> ข. เข็มขึ้นไประยะหนึ่งแล้วค้าง<br>
-                    <input type="radio" name="q27" value="ค"> ค. กระดิกครั้งหนึ่ง กลับขั้วแล้วต้องไม่กระดิก<br>
-                    <input type="radio" name="q27" value="ง"> ง. กระดิกขึ้นและกลับลงมา<br>
-                </div>
-                
-                <div class="question">
-                    <p>28. จากภาพ อุปกรณ์นี้มีชื่อเรียกว่าอะไร</p>
-                    <img src="Picture3.jpg" alt="ภาพประกอบคำถาม" width="300"><br>
-                    <input type="radio" name="q28" value="ก"> ก. บัลลาสต์<br>
-                    <input type="radio" name="q28" value="ข"> ข. สตาร์ทเตอร์<br>
-                    <input type="radio" name="q28" value="ค"> ค. ฟลูออเรสเซนต์<br>
-                    <input type="radio" name="q28" value="ง"> ง. นีออน<br>
-                </div>
-                
-                <div class="question">
-                    <p>29. หลอดไฟชนิดใดต้องใช้บัลลาสต์และสตาร์ทเตอร์ในการทำงาน</p>
-                    <input type="radio" name="q29" value="ก"> ก. ฟลูออเรสเซนต์<br>
-                    <input type="radio" name="q29" value="ข"> ข. แอลอีดี<br>
-                    <input type="radio" name="q29" value="ค"> ค. นีออน<br>
-                    <input type="radio" name="q29" value="ง"> ง. อินแคนเดสเซนต์<br>
-                </div>
-                
-                <div class="question">
-                    <p>30. อุปกรณ์ใดสามารถถอดออกจากวงจรได้ หลังจากที่หลอดไฟสว่างแล้ว โดยไม่มีผลต่อวงจร</p>
-                    <input type="radio" name="q30" value="ก"> ก. สตาร์ทเตอร์<br>
-                    <input type="radio" name="q30" value="ข"> ข. บัลลาสต์<br>
-                    <input type="radio" name="q30" value="ค"> ค. สวิตช์<br>
-                    <input type="radio" name="q30" value="ง"> ง. รางหลอด<br>
-                </div>
-                
-                
-
-                <!-- เพิ่มคำถามอื่นๆ ได้ที่นี่ -->
+                <div id="questions"></div>
 
                 <button type="submit">ส่งคำตอบ</button>
             </div>
@@ -358,27 +140,82 @@
     </div>
 
     <script>
+        // โหลดคำถามจาก exam.txt
+        async function loadQuestions() {
+            try {
+                const response = await fetch('./exam.txt');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.text();
+                const questions = data.trim().split('\n\n');
+
+                const questionContainer = document.getElementById('questions');
+                questionContainer.innerHTML = '';
+
+                questions.forEach((q, index) => {
+                    const lines = q.split('\n');
+                    let questionText = lines[0];
+                    let imageFilename = '';
+
+                    // Check for image filename in parentheses
+                    const imageMatch = questionText.match(/\(ภาพ\s(.*?)\)/);
+                    if (imageMatch) {
+                        imageFilename = imageMatch[1].trim();
+                        questionText = questionText.replace(/\(ภาพ\s(.*?)\)/, '').trim();
+                    }
+
+                    const options = lines.slice(1);
+
+                    const questionHTML = document.createElement('div');
+                    questionHTML.className = 'question';
+                    // Ensure questionText is not empty before adding the paragraph
+                    if (questionText) {
+                        questionHTML.innerHTML = `<p>${questionText}</p>`;
+                    }
+                    if (imageFilename) {
+                        const img = new Image();
+                        img.src = imageFilename;
+                        img.alt = "Question Image";
+                        img.className = "question-image";
+                        questionHTML.appendChild(img);
+                    }
+
+                    questionHTML.innerHTML += options.map(option => {
+                        const value = option.charAt(0);
+                        return `<label><input type="radio" name="q${index + 1}" value="${value}"> ${option}</label><br>`;
+                    }).join('');
+
+                    questionContainer.appendChild(questionHTML);
+                });
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                const questionContainer = document.getElementById('questions');
+                questionContainer.innerHTML = `<p style="color:red;">Failed to load questions. Please check exam.txt and try again.</p>`;
+            }
+        }
+
+        // ตรวจสอบข้อมูลฟอร์มก่อนส่ง
         function validateForm() {
-            var name = document.getElementById("name").value;
-            var school = document.getElementById("school").value;
-            var questions = document.querySelectorAll('input[type="radio"]:checked');
-            
-            // ตรวจสอบว่าชื่อและโรงเรียนถูกกรอก
-            if (name == "" || school == "") {
+            const name = document.getElementById("name").value.trim();
+            const school = document.getElementById("school").value.trim();
+            const questions = document.querySelectorAll('input[type="radio"]:checked');
+
+            if (name === "" || school === "") {
                 alert("กรุณากรอกข้อมูลส่วนตัวให้ครบ");
                 return false;
             }
 
-            // ตรวจสอบว่าตอบคำถามครบทุกข้อ
-            var totalQuestions = 30; // จำนวนคำถามทั้งหมด
+            const totalQuestions = document.querySelectorAll('.question').length;
             if (questions.length < totalQuestions) {
                 alert("กรุณาตอบคำถามทุกข้อ");
                 return false;
             }
 
-            // ถ้าทุกอย่างถูกต้องให้ส่งข้อมูล
             return true;
         }
+
+        window.onload = loadQuestions;
     </script>
 </body>
 </html>
